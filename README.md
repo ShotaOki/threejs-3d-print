@@ -32,3 +32,12 @@ JSON（JEXL形式）のデータで、図形の座標を指定します。
 
 コンテキストファイルのパスは、例えば`public\shape-card-case\case-context.js`です。
 JSON（JEXL形式）のデータで、データファイルで利用する変数を定義します
+
+
+# リソース
+
+SVGデータの参照元  
+https://ja.pattern.monster/
+
+SVGデータの参照元  
+https://fonts.google.com/icons
