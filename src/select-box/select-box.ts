@@ -8,6 +8,17 @@ export namespace SelectBox {
     caseBuffer: 0.1, // ケースのバッファ
     numberList: [3, 6], // ケースに表示する数字のリスト
   };
+  /**
+   * 指定されたインデックスに基づいて選択情報を返します。
+   * 
+   * @param index - 選択するオブジェクトを識別するためのインデックス。数値または文字列で指定します。
+   * @returns 選択されたオブジェクトの情報を含むオブジェクトを返します。該当するインデックスがない場合は `undefined` を返します。
+   * 
+   * 選択情報には以下のプロパティが含まれます:
+   * - `contextUrl`: 対応するコンテキストファイルのURL。
+   * - `modelUrl`: 対応するモデルファイルのURL。
+   * - `parameter`: 定義済みのパラメータオブジェクト。
+   */
   export function convertToSelectedInfo(index: number | string) {
     if (index == 1) {
       return {
@@ -47,6 +58,14 @@ export namespace SelectBox {
     return undefined;
   }
 
+  /**
+   * セレクトボックスを作成する関数です。
+   * 
+   * この関数は、HTMLのセレクトボックス要素を生成し、指定されたオプションを追加して返します。
+   * セレクトボックスは、画面上の特定の位置（左上から50px下）に配置されます。
+   * 
+   * @returns {HTMLSelectElement} 作成されたセレクトボックス要素
+   */
   export function createSelectBox() {
     const selectBox = document.createElement("select");
     selectBox.id = "select";

@@ -12,8 +12,6 @@ namespace ShapeGroup {
   }
   /**
    * 頂点情報を合成する
-   * @param shapeList
-   * @returns
    */
   export function shapes(shapeList: THREE.BufferGeometry[]) {
     return BufferGeometryUtils.mergeGeometries(shapeList);

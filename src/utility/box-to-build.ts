@@ -5,6 +5,10 @@ import { degToRad } from "three/src/math/MathUtils.js";
  * ボックスを作成する
  */
 namespace BoxToBuild {
+
+  /**
+   * ボックスを作成する
+   */
   function _create(props: {
     centerX: number;
     centerZ: number;
@@ -19,6 +23,9 @@ namespace BoxToBuild {
     return box;
   }
 
+  /**
+   * 角丸のボックスを作成する
+   */
   function _createRadius(props: {
     centerX: number;
     centerZ: number;

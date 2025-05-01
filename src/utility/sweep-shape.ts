@@ -51,7 +51,7 @@ namespace SweepShape {
   }
 
   /**
-   * テキストから作成する
+   * テキストから掃引体を作成する
    */
   export async function fromText(props: {
     text: string;
@@ -110,6 +110,9 @@ namespace SweepShape {
     return geometry;
   }
 
+  /**
+   * SVGのファイルオブジェクトから掃引体を作成する
+   */
   export async function fromSVG(props: {
     svgFilePath: string | { contents: string };
     faceDirection: FaceDirection;

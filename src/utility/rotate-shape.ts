@@ -28,7 +28,7 @@ namespace RotateShape {
       0,
       Math.PI * 2
     );
-    geometry.translate(x, 0, z); // Translate to the center of the world
+    geometry.translate(x, 0, z);
     return geometry;
   }
 
