@@ -21,7 +21,8 @@
     comment: "SVGイラストを描画する",
     props: {
       svgFilePath: "/svg-pattern/shopping_cart.svg",
-      faceDirection: "bottom",
+      xFlip: true,
+      faceDirection: "bottom-180",
       floorRect: {
         x1: 0.6,
         z1: 0.0,

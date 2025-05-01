@@ -55,11 +55,11 @@ export namespace SelectBox {
     selectBox.style.left = "0";
 
     const options = [
-      { value: 1, text: "ケース" },
-      { value: 2, text: "フレーム付きケース" },
-      { value: 3, text: "ケース（スラブ）" },
-      { value: 4, text: "名札" },
-      { value: 5, text: "名札（メッセージ）" },
+      { value: 1, text: "ケーストレイ" },
+      { value: 2, text: "額縁ケース" },
+      { value: 3, text: "無地ケース" },
+      { value: 4, text: "キーホルダー" },
+      { value: 5, text: "スタンプ" },
     ];
     options.forEach((option) => {
       const opt = document.createElement("option");
