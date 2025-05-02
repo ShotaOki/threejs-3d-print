@@ -192,7 +192,7 @@ export class ThreeJsBaseModule {
     } else {
       // ファイルをブラウザ上でダウンロードする
       const blob = new Blob([stl], { type: "application/octet-stream" });
-      var a = document.createElement("a");
+      const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
       a.target = "_blank";
       a.download = props.exportFileName;
