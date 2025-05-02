@@ -8,5 +8,6 @@
     drawSvgPatterns: false,
     patternSize: 1.0,
     patternCount: 6,
+    rootDirectory: rootDirectory,
   },
 ];

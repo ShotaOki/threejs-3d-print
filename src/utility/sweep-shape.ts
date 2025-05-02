@@ -9,6 +9,7 @@ import { degToRad } from "three/src/math/MathUtils.js";
 // @ts-ignore
 import { default as _TextToSVG } from "../oss-extends/TextToSVG.js";
 import { default as TextToSVG, type Anchor } from "text-to-svg";
+import { fetchFileContents } from "../shapes/fetch-file-contents.js";
 
 type FaceDirection =
   | "top"
@@ -305,8 +306,7 @@ namespace SweepShape {
 
     let svgData: SVGResult;
     if (props.svgFilePath && typeof props.svgFilePath === "string") {
-      const svgResult = await fetch(props.svgFilePath);
-      const svgText = await svgResult.text();
+      const svgText = await fetchFileContents({url: props.svgFilePath});
       svgData = new SVGLoader().parse(svgText);
     } else if (props.svgFilePath && typeof props.svgFilePath === "object") {
       svgData = new SVGLoader().parse(props.svgFilePath.contents);
@@ -319,7 +319,7 @@ namespace SweepShape {
       props.actualSize === undefined &&
       props.directScale === undefined;
     let drawBoxMin = {
-      x: 99999,
+      x: 99999, 
       y: 99999,
       z: 99999,
     };

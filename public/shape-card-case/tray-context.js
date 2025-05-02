@@ -6,5 +6,6 @@
     slabDepth: slabDepth,
     thinSlabDepth: thinSlabDepth,
     numberList: numberList,
+    rootDirectory: rootDirectory,
   },
 ];

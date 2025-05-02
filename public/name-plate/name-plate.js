@@ -3,7 +3,7 @@
     type: "SweepShape.fromText",
     comment: "テキストを描画する",
     props: {
-      text: "勝手に課金する",
+      text: "テキスト文字列",
       xFlip: true,
       faceDirection: "bottom-180",
       floorRect: {
@@ -20,7 +20,7 @@
     type: "SweepShape.fromSVG",
     comment: "SVGイラストを描画する",
     props: {
-      svgFilePath: "/svg-pattern/shopping_cart.svg",
+      svgFilePath: rootDirectory + "svg-pattern/shopping_cart.svg",
       xFlip: true,
       faceDirection: "bottom-180",
       floorRect: {

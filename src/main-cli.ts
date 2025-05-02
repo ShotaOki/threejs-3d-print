@@ -37,6 +37,11 @@ const args = yargs(hideBin(process.argv))
     type: "string",
     description: "エクスポートファイルのパス",
   })
+  .option("workingDirectory", {
+    alias: "w",
+    type: "string",
+    description: "ワーキングディレクトリのパス。省略時はpublicディレクトリとする。",
+  })
   .parseSync();
 
 /**
@@ -46,18 +51,36 @@ function cliMain() {
   const item = new ThreeJsBaseModule({
     isBrowser: false,
   });
+  // ルートディレクトリをPublicに指定する
+  const parameter = JSON.parse(JSON.stringify(SelectBox.CASE_PARAMETER));
+  if (args.workingDirectory === undefined) {
+    parameter.rootDirectory = process.cwd() + "\\public\\";
+  } else {
+    parameter.rootDirectory = args.workingDirectory;
+  }
+  // ポリフィルを設定する
+  setupNodeEnvironmentPolyfill();
+  // メッシュをシーンに登録する
   item
     .updateMesh({
       contextUrl: args.context ?? "",
       modelUrl: args.data ?? "",
-      data: SelectBox.CASE_PARAMETER,
+      data: parameter,
     })
     .then(() => {
+      // STLをエクスポートする
       console.log("Exported");
       item.export({
         exportFileName: args.export ?? "object.stl",
       });
     });
+}
+
+function setupNodeEnvironmentPolyfill() {
+  import("jsdom").then((jsdom) => {
+    const { JSDOM } = jsdom
+    global.DOMParser = new JSDOM().window.DOMParser
+  })
 }
 
 cliMain();

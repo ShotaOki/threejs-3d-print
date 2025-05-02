@@ -7,6 +7,7 @@ export namespace SelectBox {
     objectHeight: 0.8, // ケースの高さ
     caseBuffer: 0.1, // ケースのバッファ
     numberList: [3, 6], // ケースに表示する数字のリスト
+    rootDirectory: "/", // データファイルから参照するファイルのルートディレクトリ
   };
   /**
    * 指定されたインデックスに基づいて選択情報を返します。

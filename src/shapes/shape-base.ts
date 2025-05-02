@@ -105,17 +105,23 @@ export default class ShapeBase {
     // 変数を確保する
     const shapeList = [];
     const notMergeObjects = [];
-    // 図形パラメータを参照する
-    const contextText = await fetchFileContents({
-      url: props.contextUrl,
-      isBrowser: props.isBrowser,
-    });
-    // jsファイルでJEXLに変換できないものを文字列から除外する
-    // jexlは負の数を処理できないため、"-a"は"0-a"に変換する
-    const contextJson = jexl.evalSync(
-      contextText.replace(";", "").replace(/:-/g, ":0-").replace(/: -/g, ":0-"),
-      parameter
-    )[0];
+
+    // コンテキスト情報（変数情報）を参照する
+    // 省略する場合は空のコンテキストを返す
+    let contextJson: any = {};
+    if (props.contextUrl.length >= 1) {
+      // 図形パラメータを参照する
+      const contextText = await fetchFileContents({
+        url: props.contextUrl,
+        isBrowser: props.isBrowser,
+      });
+      // jsファイルでJEXLに変換できないものを文字列から除外する
+      // jexlは負の数を処理できないため、"-a"は"0-a"に変換する
+      contextJson = jexl.evalSync(
+        contextText.replace(";", "").replace(/:-/g, ":0-").replace(/: -/g, ":0-"),
+        parameter
+      )[0];
+    }
 
     // 図形情報を参照する
     const shapeText = await fetchFileContents({

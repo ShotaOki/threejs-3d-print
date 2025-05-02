@@ -82,7 +82,7 @@
     comment: "ケースの前面を描画する",
     hidden: !drawSvgPatterns,
     props: {
-      svgFilePath: "/svg-pattern/pattern.svg",
+      svgFilePath: rootDirectory + "svg-pattern/pattern.svg",
       faceDirection: "x-front",
       floorRect: {
         x1: -(maxX + slabDepth) - slabDepth / 2,
@@ -107,7 +107,7 @@
     comment: "ケースの前面を描画する",
     hidden: !drawSvgPatterns,
     props: {
-      svgFilePath: "/svg-pattern/pattern.svg",
+      svgFilePath: rootDirectory + "svg-pattern/pattern.svg",
       faceDirection: "x-front",
       floorRect: {
         x1: -(maxX + slabDepth) - slabDepth / 2,
