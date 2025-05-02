@@ -33,6 +33,30 @@ JSON（JEXL形式）のデータで、図形の座標を指定します。
 コンテキストファイルのパスは、例えば`public\shape-card-case\case-context.js`です。
 JSON（JEXL形式）のデータで、データファイルで利用する変数を定義します
 
+引数に`--workingDirectory`を指定すると、データファイルから参照するSVGファイルのルートディレクトリを変更できます。  
+未指定の場合はこのプロジェクトのpublicディレクトリがルートディレクトリに指定されます
+
+**YAMLを利用する場合**
+
+また、JEXLの他、YAMLファイルを利用することもできます  
+YAMLファイルの場合はcontentsをルートにして定義します
+
+```yaml
+contents:
+# 床面を描画する
+- type: "BoxToBuild.fromFloorRect" 
+  props:
+    floorRect:
+      x1: -10.0
+      ...
+```
+
+YAMLファイルのサンプルは、yaml-sampleディレクトリにあります。  
+次のように実行します。
+
+```bash
+npm run cli -- export --data yaml-sample\box.yaml --export ..\box.stl
+```
 
 # リソース
 

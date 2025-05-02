@@ -1,0 +1,47 @@
+# 一辺が2cm、天辺が開いている立方体の箱を描画する
+contents:
+# 床面を描画する
+- type: "BoxToBuild.fromFloorRect" 
+  props:
+    floorRect:
+      x1: -10.0
+      z1: -10.0
+      x2: 10.0
+      z2: 10.0
+    height: 1.0
+# 側面Aを描画する
+- type: "BoxToBuild.fromFloorRect" 
+  props:
+    floorRect:
+      x1: -10.0
+      z1: -10.0
+      x2: -9.0
+      z2: 10.0
+    height: 20.0
+# 側面Bを描画する
+- type: "BoxToBuild.fromFloorRect" 
+  props:
+    floorRect:
+      x1: 9.0
+      z1: -10.0
+      x2: 10.0
+      z2: 10.0
+    height: 20.0
+# 側面Cを描画する
+- type: "BoxToBuild.fromFloorRect" 
+  props:
+    floorRect:
+      x1: -10.0
+      z1: -10.0
+      x2: 10.0
+      z2: -9.0
+    height: 20.0
+# 側面Dを描画する
+- type: "BoxToBuild.fromFloorRect" 
+  props:
+    floorRect:
+      x1: -10.0
+      z1: 9.0
+      x2: 10.0
+      z2: 10.0
+    height: 20.0

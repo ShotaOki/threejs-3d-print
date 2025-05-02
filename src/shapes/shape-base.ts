@@ -2,6 +2,7 @@ import * as THREE from "three";
 import Material from "../materials/material";
 import BoxToBuild from "../utility/box-to-build";
 import jexl from "jexl";
+import { parse as yamlParse } from "yaml";
 import ShapeGroup from "../utility/shape-group";
 import RotateShape from "../utility/rotate-shape";
 import SweepShape from "../utility/sweep-shape";
@@ -106,9 +107,11 @@ export default class ShapeBase {
     const shapeList = [];
     const notMergeObjects = [];
 
+    let contextJson: any = {};
+    let shapeData: any[] = [];
+
     // コンテキスト情報（変数情報）を参照する
     // 省略する場合は空のコンテキストを返す
-    let contextJson: any = {};
     if (props.contextUrl.length >= 1) {
       // 図形パラメータを参照する
       const contextText = await fetchFileContents({
@@ -128,16 +131,23 @@ export default class ShapeBase {
       url: props.shapeUrl,
       isBrowser: props.isBrowser,
     });
-    // 関数の追加: degreeをRadianに変換する
-    jexl.addTransform("degree", (value: number) => {
-      return (value * Math.PI) / 180;
-    });
-    // jsファイルでJEXLに変換できないものを文字列から除外する
-    // jexlは負の数を処理できないため、"-a"は"0-a"に変換する
-    const shapeData = jexl.evalSync(
-      shapeText.replace(";", "").replace(/:-/g, ":0-").replace(/: -/g, ":0-"),
-      contextJson
-    );
+    if (props.shapeUrl.endsWith(".yaml") || props.shapeUrl.endsWith(".yml")) {
+      // 拡張子がYAMLなら、YAMLとしてパースする
+      // YAMLのルートはcontentsプロパティとする
+      shapeData = yamlParse(shapeText).contents;
+    } else {
+      // それ以外の拡張子なら、JEXLとしてパースする
+      // 関数の追加: degreeをRadianに変換する
+      jexl.addTransform("degree", (value: number) => {
+        return (value * Math.PI) / 180;
+      });
+      // jsファイルでJEXLに変換できないものを文字列から除外する
+      // jexlは負の数を処理できないため、"-a"は"0-a"に変換する
+      shapeData = jexl.evalSync(
+        shapeText.replace(";", "").replace(/:-/g, ":0-").replace(/: -/g, ":0-"),
+        contextJson
+      );
+    }
     for (const shape of shapeData) {
       // 図形情報をGeometryに変換する
       const shapeListItem = await this.convertToShape(shape);
