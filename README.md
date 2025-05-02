@@ -58,6 +58,16 @@ YAMLファイルのサンプルは、yaml-sampleディレクトリにありま�
 npm run cli -- export --data yaml-sample\box.yaml --export ..\box.stl
 ```
 
+# React上で動かす
+
+Reactで動かす場合は、このプロジェクトのpublicとsrc以下にあるファイル（※main.tsとstyle.css以外）をReactプロジェクトにコピーした上で、以下のライブラリを追加でインストールします。
+
+```bash
+npm i @react-three/fiber @react-three/drei
+```
+
+ReactプロジェクトのApp.tsxを、このプロジェクトの`react-sample\App.tsx.txt`にある内容に書き変えます。
+
 # リソース
 
 SVGデータの参照元  

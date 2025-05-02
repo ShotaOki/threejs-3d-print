@@ -1,0 +1,45 @@
+import { Canvas, useThree } from '@react-three/fiber'
+import { OrbitControls } from '@react-three/drei'
+import { useEffect } from 'react';
+import { ThreeJsBaseModule } from "./three-js-base-module"
+import { SelectBox } from "./select-box/select-box";
+
+/** Three.jsの中のコンポーネントを定義する */
+function InternalComponent() {
+  // Three.jsのシーンをR3Fから取得する
+  const {scene} = useThree();
+
+  useEffect(() => {
+    // モジュールを定義する
+    const mod = new ThreeJsBaseModule({
+      isBrowser: true,
+    });
+    // シーンを紐づける
+    mod.scene = scene;
+    // シーンにオブジェクトを配置する
+    mod.updateMesh({
+        contextUrl: "shape-card-case/tray-context.js",
+        modelUrl: "shape-card-case/tray.js",
+        data: SelectBox.CASE_PARAMETER
+    })
+  }, [scene])
+
+  return <></>
+}
+
+function App() {
+
+  return (
+    <Canvas style={{ height: '100vh', width: '100vw', background: '#000' }}>
+      <InternalComponent />
+      <ambientLight color={0x404040}/>
+      <directionalLight color={0xffffff} intensity={1}/>
+      <hemisphereLight color={0x7444ff} groundColor={0xff00bb} intensity={0.5}/>
+      <pointLight color={0x7444ff} intensity={1} distance={100} position={[0, 3, 4]}/>
+      <OrbitControls />
+      <gridHelper args={[10, 10]} />
+    </Canvas>
+  )
+}
+
+export default App
